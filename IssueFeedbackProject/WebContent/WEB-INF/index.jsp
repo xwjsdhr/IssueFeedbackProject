@@ -255,7 +255,11 @@
 
 						<tr>
 
-							<td></td>
+							<td>
+							<button id="btnSelectAll"
+									class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+									全选</button>
+							</td>
 							<td><span class="badge badge-secondary">${issue_quantity }</span>
 								状态</td>
 							<td width="15%">标题</td>
