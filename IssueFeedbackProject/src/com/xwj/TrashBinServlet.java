@@ -28,12 +28,12 @@ public class TrashBinServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("user_session");
-		if(user != null) {
+		if(user.getDept().getId() == 4) {
 			List<Issue> issues = businessService.getAllDeletedIssues();
 			request.setAttribute("deleted_list", issues);
 			request.getRequestDispatcher("/WEB-INF/trash_bin.jsp").forward(request, response);
 		}else {
-			response.sendRedirect(request.getContextPath()+"/Login");
+			response.sendRedirect(request.getContextPath()+"/Index");
 		}
 		
 		

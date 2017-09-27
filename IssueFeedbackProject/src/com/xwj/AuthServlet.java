@@ -33,11 +33,6 @@ public class AuthServlet extends HttpServlet {
 		User user = businessService.login(username, password);
 		if(user != null) {
 			request.getSession().setAttribute("user_session", user);
-			Cookie cookie = new Cookie("userId", user.getId()+"");
-			cookie.setMaxAge(3000);
-			cookie.setSecure(false);
-			cookie.setPath("/");
-			response.addCookie(cookie);
 			response.sendRedirect("/IssueFeedbackProject/Index");
 		}else {
 			LoginError loginError = new LoginError();

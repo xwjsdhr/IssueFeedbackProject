@@ -20,13 +20,12 @@ public class UserManagementServlet extends HttpServlet {
     
     public UserManagementServlet() {
         super();
-        
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("user_session");
-		if(user != null && user.getDept().getId() ==4) {
+		if(user.getDept().getId() ==4) {
 			request.getRequestDispatcher("/WEB-INF/user_management.jsp").forward(request, response);
 		}
 	}

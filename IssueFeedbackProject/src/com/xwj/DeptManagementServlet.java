@@ -31,12 +31,10 @@ public class DeptManagementServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User userSession = (User) request.getSession().getAttribute("user_session");
-		if(userSession!= null && userSession.getDept().getId() == 4) {
+		if(userSession.getDept().getId() == 4) {
 			List<Dept> allDepts = businessService.getAllDepts();
 			request.setAttribute("all_depts", allDepts);
 			request.getRequestDispatcher("/WEB-INF/dept_management.jsp").forward(request, response);
-		}else if(userSession == null) {
-			response.sendRedirect(request.getContextPath()+"/Login");
 		}
 	}
 }

@@ -30,22 +30,19 @@ public class UserInfoServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		if (req.getSession().getAttribute("user_session") == null) {
-			resp.sendRedirect("/IssueFeedbackProject/Login");
-		} else {
-			Integer userId = ((User) req.getSession().getAttribute("user_session")).getId();
-			
-			List<Issue> issues = businessService.getIssuesByUserId(userId);
-			req.setAttribute("list", issues);
-			req.setAttribute("issue_quantity", issues.size());
+		Integer userId = ((User) req.getSession().getAttribute("user_session")).getId();
 
-			List<Status> allStatus = businessService.getAllStatus();
-			req.setAttribute("all_status", allStatus);
-			List<Dept> allDepts = businessService.getAllDepts();
-			req.setAttribute("all_depts", allDepts);
-			req.setAttribute("dept_quantity", allDepts.size());
-			req.getRequestDispatcher("/WEB-INF/user_info.jsp").forward(req, resp);
-		}
+		List<Issue> issues = businessService.getIssuesByUserId(userId);
+		req.setAttribute("list", issues);
+		req.setAttribute("issue_quantity", issues.size());
+
+		List<Status> allStatus = businessService.getAllStatus();
+		req.setAttribute("all_status", allStatus);
+		List<Dept> allDepts = businessService.getAllDepts();
+		req.setAttribute("all_depts", allDepts);
+		req.setAttribute("dept_quantity", allDepts.size());
+		req.getRequestDispatcher("/WEB-INF/user_info.jsp").forward(req, resp);
+
 	}
 
 }

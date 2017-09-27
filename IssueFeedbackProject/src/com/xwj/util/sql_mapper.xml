@@ -181,7 +181,7 @@
 		 <include refid="userTable"/>
 		  WHERE tu.user_name = #{username}
 	</select>
-	<select id="getUserById" parameterType="Integer">
+	<select id="getUserById" parameterType="Integer" resultMap="userResultMap">
 		SELECT 
 		tu.id AS userId,
 		tu.user_name AS userName,
@@ -190,7 +190,7 @@
 		tu.dept_id AS deptId
 		 FROM 
 		 <include refid="userTable"/>
-		  WHERE tu.user_name = #{username}
+		  WHERE tu.id = #{id}
 	</select>
 	<resultMap type="com.xwj.entity.Issue" id="issueResultMap">
 		<id column="issueId" property="id" />

@@ -39,21 +39,15 @@ public class AddIssueServlet extends HttpServlet {
 		issue.setContent(content);
 		issue.setIsTop(0);
 		issue.setWeekOfYear(calendar.get(Calendar.WEEK_OF_YEAR));
-		
-	
+
 		User userSession = (User) request.getSession().getAttribute("user_session");
-		if (userSession != null) {
-			issue.setUser(userSession);
-			int res = businessService.addIssue(issue);
-			System.out.println(res);
-			if (res > 0) {
-				response.sendRedirect("/IssueFeedbackProject/Index");
-			} 
-		}else {
-			
+		issue.setUser(userSession);
+		int res = businessService.addIssue(issue);
+		System.out.println(res);
+		if (res > 0) {
+			response.sendRedirect("/IssueFeedbackProject/Index");
 		}
 
-		
 	}
 
 }

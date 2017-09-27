@@ -27,7 +27,7 @@ public class RestoreServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("user_session");
-		if(user!= null && user.getDept().getId() == 4) {
+		if(user.getDept().getId() == 4) {
 			String issueIdStr = request.getParameter("id");
 			Integer id = Integer.parseInt(issueIdStr);
 			int res = businessService.restoreIssue(id);
@@ -36,8 +36,7 @@ public class RestoreServlet extends HttpServlet {
 			}else {
 				
 			}
-		}
-		if(user != null && user.getDept().getId() != 4) {
+		}else {
 			
 		}
 		

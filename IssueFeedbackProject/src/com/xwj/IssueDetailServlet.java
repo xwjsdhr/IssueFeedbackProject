@@ -33,22 +33,19 @@ public class IssueDetailServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getSession().getAttribute("user_session") != null) {
-			Integer id = Integer.parseInt(request.getParameter("id"));
-			Issue issue = businessService.getById(id);
-//			List<Comment> comments = businessService.getCommentsById(id);
-			List<Comment> comments = issue.getComments();
-			List<Status> allStatus = businessService.getAllStatus();
-			System.out.println(issue.getComments());
-			if (issue != null) {
-				request.setAttribute("issue_detail", issue);
-				request.setAttribute("comments", comments);
-				request.setAttribute("comment_number", comments.size());
-				request.setAttribute("all_status", allStatus);
-				request.getRequestDispatcher("/WEB-INF/issue_detail.jsp").forward(request, response);
-			}
-		}else {
-			response.sendRedirect(request.getContextPath()+"/Login");
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		Issue issue = businessService.getById(id);
+		// List<Comment> comments = businessService.getCommentsById(id);
+		List<Comment> comments = issue.getComments();
+		List<Status> allStatus = businessService.getAllStatus();
+		System.out.println(issue.getComments());
+		if (issue != null) {
+			request.setAttribute("issue_detail", issue);
+			request.setAttribute("comments", comments);
+			request.setAttribute("comment_number", comments.size());
+			request.setAttribute("all_status", allStatus);
+			request.getRequestDispatcher("/WEB-INF/issue_detail.jsp").forward(request, response);
 		}
+
 	}
 }
